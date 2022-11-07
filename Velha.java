@@ -9,19 +9,89 @@ public class Velha {
             {4, 5, 6},
             {1, 2, 3}
     };
+//    GETTERS
+//    GET LINES
+    int[] getLine0(){
+        return new int[]{cube[0][0], cube[0][1], cube[0][2]};
+    }
+
+    int[] getLine1(){
+        return new int[]{cube[1][0], cube[1][1], cube[1][2]};
+    }
+
+    int[] getLine2(){
+        return new int[]{cube[2][0], cube[2][1], cube[2][2]};
+    }
+
+//    GET COLUMNS
+    int[] getColumn0(){
+        return new int[]{cube[0][0], cube[1][0], cube[2][0]};
+    }
+
+    int[] getColumn1(){
+        return new int[]{cube[0][1], cube[1][1], cube[2][1]};
+    }
+
+    int[] getColumn2(){
+        return new int[]{cube[0][2], cube[1][2], cube[2][2]};
+    }
+
+//    GET DIAGONALS
+    int[] getDiagonal0(){
+        return new int[]{cube[0][0], cube[1][1], cube[2][2]};
+    }
+
+    int[] getDiagonal1(){
+        return new int[]{cube[2][0], cube[1][1], cube[0][2]};
+    }
+//    SETTERS
+//    SET LINES
+    void setLine0(int[] set){
+        cube[0][0] = set[0];
+        cube[0][1] = set[1];
+        cube[0][2] = set[2];
+    }
+    void setLine1(int[] set){
+        cube[1][0] = set[0];
+        cube[1][1] = set[1];
+        cube[1][2] = set[2];
+    }
+    void setLine2(int[] set){
+        cube[2][0] = set[0];
+        cube[2][1] = set[1];
+        cube[2][2] = set[2];
+    }
+
+//    SET COLUMNS
+    void setColumn0(int[] set){
+        cube[0][0] = set[0];
+        cube[1][0] = set[1];
+        cube[2][0] = set[2];
+    }
+    void setColumn1(int[] set){
+        cube[0][1] = set[0];
+        cube[1][1] = set[1];
+        cube[2][1] = set[2];
+    }
+    void setColumn2(int[] set){
+        cube[0][2] = set[0];
+        cube[1][2] = set[1];
+        cube[2][2] = set[2];
+    }
+
 
     public boolean verifyWinner(){
 
-        int[] c0 = {cube[0][0], cube[1][0], cube[2][0]};
-        int[] c1 = {cube[0][1], cube[1][1], cube[2][1]};
-        int[] c2 = {cube[0][2], cube[1][2], cube[2][2]};
+        int[] c0 = getColumn0();
+        int[] c1 = getColumn1();
+        int[] c2 = getColumn2();
 
-        int[] l0 = {cube[0][0], cube[0][1], cube[0][2]};
-        int[] l1 = {cube[1][0], cube[1][1], cube[1][2]};
-        int[] l2 = {cube[2][0], cube[2][1], cube[2][2]};
+        int[] l0 = getLine0();
+        int[] l1 = getLine1();
+        int[] l2 = getLine2();
 
-        int[] d0 = {cube[0][0], cube[1][1], cube[2][2]};
-        int[] d1 = {cube[2][0], cube[1][1], cube[0][2]};
+        int[] d0 = getDiagonal0();
+        int[] d1 = getDiagonal1();
 
         int[][] tudo = {l0,l1,l2, c0,c1,c2, d0,d1};
 
