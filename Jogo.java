@@ -1,5 +1,6 @@
 package bosch;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -38,22 +39,66 @@ public class Jogo {
 
             System.out.print("\u001B[00m");
             System.out.println(
-                    "=========Cube=========\n"+
-                    "10 - 0 lines to right\n"+
-                    "11 - 0 lines to  left\n"+
-                    "20 - 1 lines to right\n"+
-                    "22 - 1 lines to  left\n"+
-                    "30 - 2 lines to right\n"+
-                    "33 - 2 lines to  left\n"+
-                    "----------------------\n"+
-                    "40 - 0 columns to down\n"+
-                    "44 - 0 columns to  up\n"+
-                    "50 - 1 columns to down\n"+
-                    "55 - 1 columns to  up\n"+
-                    "60 - 2 columns to down\n"+
-                    "66 - 2 columns to  up\n");
+                    "=========Cube=========\n" +
+                            "10 - 0 lines to right\n" +
+                            "11 - 0 lines to  left\n" +
+                            "20 - 1 lines to right\n" +
+                            "22 - 1 lines to  left\n" +
+                            "30 - 2 lines to right\n" +
+                            "33 - 2 lines to  left\n" +
+                            "----------------------\n" +
+                            "40 - 0 columns to down\n" +
+                            "44 - 0 columns to  up\n" +
+                            "50 - 1 columns to down\n" +
+                            "55 - 1 columns to  up\n" +
+                            "60 - 2 columns to down\n" +
+                            "66 - 2 columns to  up\n");
+            Object[] lista;
+            ArrayList<Object[]> intBool = new ArrayList<>();
+            boolean reverse = false;
+            int num = -1;
+            int index = 0;
+            for (int i = 0; i < 6; i++) {
+                if (i % 2 == 0) {
+                    reverse = false;
+                    num += 1;
+                    index += 1;
+                } else {
+                    reverse = true;
+                }
+                lista = new Object[]{num, reverse};
+                intBool.add(lista);
+                System.out.println(Arrays.toString(intBool.get(i)));
+            }
+            System.out.println("-------------");
+            int[][] setMode = {
+                    {10, 0}, {11, 1}, {20, 2}, {22, 3}, {30, 4}, {33, 5},
+                    {40, 0}, {44, 1}, {50, 2}, {55, 3}, {60, 4}, {66, 5}
+            };
+
             spin = scan.nextInt();
+
+            for (int i = 0; i < setMode.length; i++) {
+                if (setMode[i][0] == spin) {
+                    lista = intBool.get(setMode[i][1]);
+                    num = (int) lista[0];
+                    reverse = (boolean) lista[1];
+                }
+            }
+            if (spin == 0){
+                break;
+            }
+            if (spin < 40) {
+                turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, num, reverse);
+            }else{
+                turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, num, reverse);
+            }
+
+
             System.out.println("\u001B[00m -------|");
+            showAllCube(leftCube, centerCube, rightCube, backCube, upCube, downCube);
+
+/*
             if (spin == 10)
             {
                 turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, 0, false);
@@ -103,8 +148,7 @@ public class Jogo {
                 turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, 2, true);
             }
             else if (spin == 0){break;}
-            showAllCube(leftCube, centerCube, rightCube, backCube, upCube, downCube);
-
+*/
         }
 
 
