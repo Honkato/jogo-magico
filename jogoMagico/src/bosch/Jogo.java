@@ -5,36 +5,33 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Jogo {
-    Jogo(){
+    Jogo() {
     }
-    void jogar(){
-
-        Scanner scan = new Scanner(System.in);
-
-        Velha centerCube = new Velha();
-        Velha upCube = new Velha();
-        Velha backCube = new Velha();
-        Velha downCube = new Velha();
-        Velha leftCube = new Velha();
-        Velha rightCube = new Velha();
-
+    Jogo(boolean testMode){
         setCubeSide(centerCube, 2);
         setCubeSide(upCube, 1);
         setCubeSide(backCube, 4);
         setCubeSide(downCube, 3);
         setCubeSide(leftCube, 5);
         setCubeSide(rightCube,6);
-//        upCube.showCube();
-//        System.out.println("\u001B[00m -------|");
-//        leftCube.showCube();
-//        centerCube.showCube();
-//        rightCube.showCube();
-//        backCube.showCube();
-//        System.out.println("\u001B[00m -------|");
-//        downCube.showCube();
+    }
+    Velha centerCube = new Velha();
+    Velha upCube = new Velha();
+    Velha backCube = new Velha();
+    Velha downCube = new Velha();
+    Velha leftCube = new Velha();
+    Velha rightCube = new Velha();
+
+    Scanner scan= new Scanner(System.in);
+
+//    FuncoesUsuais f = new FuncoesUsuais();
+
+    void jogar(){
+
         showAllCube(leftCube, centerCube, rightCube, backCube, upCube, downCube);
+
         int spin;
-        boolean a;
+
         while (true) {
 
             System.out.print("\u001B[00m");
@@ -68,19 +65,18 @@ public class Jogo {
                 }
                 lista = new Object[]{num, reverse};
                 intBool.add(lista);
-                System.out.println(Arrays.toString(intBool.get(i)));
+//                System.out.println(Arrays.toString(intBool.get(i)));
             }
-            System.out.println("-------------");
+            System.out.print("Move: ");
             int[][] setMode = {
                     {10, 0}, {11, 1}, {20, 2}, {22, 3}, {30, 4}, {33, 5},
                     {40, 0}, {44, 1}, {50, 2}, {55, 3}, {60, 4}, {66, 5}
             };
-
             spin = scan.nextInt();
 
-            for (int i = 0; i < setMode.length; i++) {
-                if (setMode[i][0] == spin) {
-                    lista = intBool.get(setMode[i][1]);
+            for (int[] ints : setMode) {
+                if (ints[0] == spin) {
+                    lista = intBool.get(ints[1]);
                     num = (int) lista[0];
                     reverse = (boolean) lista[1];
                 }
@@ -88,67 +84,16 @@ public class Jogo {
             if (spin == 0){
                 break;
             }
-            if (spin < 40) {
+            if (spin < 35) {
                 turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, num, reverse);
             }else{
                 turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, num, reverse);
             }
 
-
             System.out.println("\u001B[00m -------|");
             showAllCube(leftCube, centerCube, rightCube, backCube, upCube, downCube);
 
-/*
-            if (spin == 10)
-            {
-                turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, 0, false);
-            }
-            else if (spin == 11)
-            {
-                turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, 0, true);
-            }
-            else if (spin == 20)
-            {
-                turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, 1, false);
-            }
-            else if (spin == 22)
-            {
-                turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, 1, true);
-            }
-            else if (spin == 30)
-            {
-                turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, 2, false);
-            }
-            else if (spin == 33)
-            {
-                turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, 2, true);
-            }
-            else if (spin == 40)
-            {
-                turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, 0, false);
-            }
-            else if (spin == 44)
-            {
-                turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, 0, true);
-            }
-            else if (spin == 50)
-            {
-                turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, 1, false);
-            }
-            else if (spin == 55)
-            {
-                turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, 1, true);
-            }
-            else if (spin == 60)
-            {
-                turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, 2, false);
-            }
-            else if (spin == 66)
-            {
-                turnLineToDown(leftCube, centerCube, rightCube, backCube, upCube, downCube, 2, true);
-            }
-            else if (spin == 0){break;}
-*/
+
         }
 
 
@@ -261,7 +206,7 @@ public class Jogo {
         }
 
         if (line == 0){
-            turnCenterToRight(up, reverse);
+            turnCenterToRight(up, !reverse);
         }else if (line == 2){
             turnCenterToRight(down, reverse);
         }
@@ -308,7 +253,7 @@ public class Jogo {
         if (column == 0){
             turnCenterToRight(left, reverse);
         }else if (column == 2){
-            turnCenterToRight(right, reverse);
+            turnCenterToRight(right, !reverse);
         }
 
     }
