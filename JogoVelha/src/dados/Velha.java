@@ -56,15 +56,24 @@ public class Velha {
                 }
             }
         }
-//        System.out.println(resto);
         if (resto == 0){
             return "DEU VELHA";
         }
         return "Nada aconteceu";
     }
+//ARRUMAR AQUI
+    public void marcar(int marcador, String x, String o){
+        while (true){
+            int cond = mudarCubo(f.pegarInt(1,9,"DIGITE ONDE VOCE QUER MARCAR: "), marcador,  x,  o);
+            if (cond != 2){
+                break;
+            }
+            System.out.println("!!!POSIÇÃO JA MARCADA!!!");
+        }
 
+    }
 
-    public int marcar(int position, int marcador, String x, String o){
+    private int mudarCubo(int position, int marcador, String x, String o){
         int[][] hashPosition = {
                 {2,0},{2,1},{2,2},
                 {1,0},{1,1},{1,2},
