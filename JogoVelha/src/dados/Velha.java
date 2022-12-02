@@ -61,12 +61,11 @@ public class Velha {
         }
         return "Nada aconteceu";
     }
-//ARRUMAR AQUI
-    public void marcar(int marcador, String x, String o){
+    public int marcar(int marcador, String x, String o){
         while (true){
             int cond = mudarCubo(f.pegarInt(1,9,"DIGITE ONDE VOCE QUER MARCAR: "), marcador,  x,  o);
             if (cond != 2){
-                break;
+                return cond;
             }
             System.out.println("!!!POSIÇÃO JA MARCADA!!!");
         }
@@ -94,6 +93,11 @@ public class Velha {
             return 0;
         }else {
             System.out.println(a);
+            if (a.equals("EMPATE")){
+                if (!(f.simNao("Deseja continuar?"))){
+                    return 0;
+                }
+            }
             return 1;
         }
 

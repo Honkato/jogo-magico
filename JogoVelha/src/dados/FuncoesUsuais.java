@@ -1,5 +1,7 @@
 package dados;
 
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -384,4 +386,36 @@ public class FuncoesUsuais {
             return resposta;
         }
     }
+    Object stringInt() {
+        Object[] strInt;
+        String str = "";
+        String str1 = "";
+        int num;
+        while (true){
+            System.out.println("DIGITEEEEEEEEEEEEE: ");
+            str = scan.next();
+            if (str.length() == 2){
+                try{
+                    num = Integer.parseInt(str);
+                    strInt = new Object[]{num};
+                    System.out.println("INTEIRO");
+                    return strInt;
+                }catch (Exception e){
+//                    str1 = str.substring(0,0);
+//                    str = str.substring(1,1);
+//                    num = Integer.parseInt(str);
+//                    strInt = new Object[]{str1, num};
+//                    System.out.println(strInt);
+//                    return strInt;
+                    str1 = str.substring(0,0);
+                    return str1;
+
+
+                }
+            }
+        }
+
+
+    }
 }
+

@@ -27,12 +27,44 @@ public class Jogo {
 //    FuncoesUsuais f = new FuncoesUsuais();
 
     void jogar(){
+        int count = 0;
+        FuncoesUsuais f = new FuncoesUsuais();//     flushed,        quiss,           why?neglass
+        ArrayList<String> jogadores = new ArrayList<>(Arrays.asList("X ", "O ", "😂", "👽", "\uD83D\uDE33", "\uD83D\uDC8B", "\uD83C\uDF77"));
 
-        showAllCube(leftCube, centerCube, rightCube, backCube, upCube, downCube);
+        System.out.println("DIGITE UM NUMERO PARA ESCOLHER O MARCADOR DO JOGADOR 1: ");
+        for (String emoji : jogadores){
+            count +=1;
+            System.out.println(count+".  "+emoji);
+        }
+        count = f.pegarInt(1, jogadores.size());
+        String j1Marcador = jogadores.get(count - 1);
+        jogadores.remove(count-1);
+        System.out.println("DIGITE UM NUMERO PARA ESCOLHER O MARCADOR DO JOGADOR 2: ");
+        count = 0;
+        for (String emoji : jogadores){
+            count +=1;
+            System.out.println(count+".  "+emoji+"  ");
+        }
+        count = f.pegarInt(1, jogadores.size());
+        //if j1Marcador == j2Marcador faz dnv
+        String j2Marcador = jogadores.get(count - 1);
+        jogadores.clear();
 
-        int spin;
-
+        int parar = 0;
         while (true) {
+            parar = L1.marcar(10, j1Marcador, j2Marcador);
+            if (parar == 1){break;}
+            parar = L1.marcar(20, j1Marcador, j2Marcador);
+            if (parar == 1){break;}
+        }
+    }
+    int tratamento(){
+
+    }
+
+    void girar(){
+        showAllCube(leftCube, centerCube, rightCube, backCube, upCube, downCube);
+        int spin;
 
             System.out.print("\u001B[00m");
             System.out.println(
@@ -82,7 +114,7 @@ public class Jogo {
                 }
             }
             if (spin == 0){
-                break;
+
             }
             if (spin < 35) {
                 turnLineToRight(leftCube, centerCube, rightCube, backCube, upCube, downCube, num, reverse);
@@ -93,11 +125,6 @@ public class Jogo {
             System.out.println("\u001B[00m -------|");
             showAllCube(leftCube, centerCube, rightCube, backCube, upCube, downCube);
 
-
-        }
-
-
-//        INVERTE A LINHA
     }
     public void showAllCube(Velha left, Velha center, Velha right, Velha back, Velha up, Velha down){
         Velha[] cube = {up, back, left, center, right, down};
