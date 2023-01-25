@@ -215,7 +215,7 @@ public class MagicGame extends JFrame implements ActionListener {
         middleRollLeft.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                turnCenterToRight( upCube,  downCube,  centerCube,  backCube, false);
+                turnCenterToRight( upCube,  downCube,  leftCube,  rightCube, true);
             }
         });
         backRollLeft.addActionListener(new ActionListener() {
