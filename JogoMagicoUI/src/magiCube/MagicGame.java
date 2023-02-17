@@ -195,6 +195,9 @@ public class MagicGame extends JFrame implements ActionListener {
                 }
                 functionalFunction();
                 for (JButton[] btnCubes:btnAllCubes) {
+                    if (btnCubes == btnBack){
+                        continue;
+                    }
                     for (JButton btn : btnCubes){
                         btn.setEnabled(true);
                     }
