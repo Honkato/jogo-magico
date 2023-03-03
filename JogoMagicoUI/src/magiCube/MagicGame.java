@@ -419,10 +419,11 @@ public class MagicGame extends JFrame implements ActionListener {
                 upLine = reverse(down.getLine(0));
                 rightColumn = reverse(left.getColumn(2));
                 downLine = reverse(up.getLine(2));
-
+                
+                int[] line2 = centerLine[2];
                 centerLine[2] = reverse(centerLine[0]);
                 centerLine[1] = reverse(centerLine[1]);
-                centerLine[0] = reverse(centerLine[2]);
+                centerLine[0] = reverse(line2);
             }
 
             center.setColumn(2, centerLine[0]);
